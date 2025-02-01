@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love, Nazzu</title>
+  <style>
+    body {
+      font-family: 'Pacifico', cursive;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 50px;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1, h2 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out, visibility 0.5s;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .active {
+      visibility: visible;
+      opacity: 1;
+      position: relative;
+    }
+
+    video {
+      width: 80%;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .final-photo {
+      width: 40%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 20px auto;
+    }
+
+    button {
+      background: #ff6f61;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #letter {
+      white-space: pre-wrap;
+      font-family: 'Arial', sans-serif;
+      font-size: 1.2rem;
+      text-align: left;
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .first-slide h1 {
+      color: brown;
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    .first-slide p {
+      color: brown;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="your-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Slide 1: Happy Anniversary -->
+  <div class="slide first-slide active">
+    <h1>Happy Anniversary, My Dear Nazzu</h1>
+    <p>With love, Fai</p>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Slide 2: Merged Video -->
+  <div class="slide">
+    <h2>Our Memories Together</h2>
+    <video controls autoplay muted>
+      <source src="Nazzu_360p (2).mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Slide 3: Letter -->
+  <div class="slide">
+    <h2>A Letter to Nazzu</h2>
+    <div id="letter"></div>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Slide 4: Love You Lots -->
+  <div class="slide">
+    <h2>Love You Lots</h2>
+    <img src="last.jpg" alt="Our Photo" class="final-photo">
+  </div>
+
+  <script>
+    let slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function nextSlide() {
+      slides[currentSlide].classList.remove('active');
+
+      currentSlide = (currentSlide + 1) % slides.length;
+
+      slides[currentSlide].classList.add('active');
+    }
+
+    // Typing effect for the letter
+    const letterText = `Dear Nazzu,
+
+You are the most amazing person I know. Every moment with you feels like a dream. I cherish our memories and look forward to many more years together.
+From the day I met you till now, I always loved you no matter what. You are my prettiest and most beautiful girl. I will love you forever and ever. I know maybe you will be overwhelmed.
+Don't be, because you know what? I would go to every extent to be with you and love you. Thank you for being you and enduring this immature guy. Hang in there, baby.
+Fai loves you a lot. Be the same and always be with me. I will be with you forever, like your loving, annoying, irritating, sweet man.
+
+Love always,  
+Fai`;
+
+    let index = 0;
+    const letterElement = document.getElementById('letter');
+
+    function typeLetter() {
+      if (index < letterText.length) {
+        letterElement.innerHTML += letterText.charAt(index);
+        index++;
+        setTimeout(typeLetter, 50);
+      }
+    }
+
+    typeLetter();
+  </script>
+</body>
+</html>
